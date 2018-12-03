@@ -1,5 +1,10 @@
 package e2e;
 
+import com.aventstack.extentreports.ExtentReporter;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import factories.BrowserFactory;
 import fixtures.UserFixture;
 import flows.LoginFlow;
@@ -15,16 +20,27 @@ public class Mytest {
 
     private static final String URL = "https://techblog.polteq.com/testshop/index.php";
     private User DEFAULT_USER = UserFixture.DEFAULT_USER();
-
+    private static ExtentHtmlReporter extentHtmlReporter;
+    private static ExtentReports extent;
+    private static ExtentTest test;
     @BeforeMethod
     public void setup(){
         Page.setWebDriver(BrowserFactory.Browser.FIREFOX);
         Page.openUrl(URL);
     }
 
-    /*
-    Here we define each page and use the methods to sign in
-     */
+    @Test
+    public void reporter(){
+        ExtentHtmlReporter reporter=new ExtentHtmlReporter("./Reports/learn_automation1.html");
+        ExtentReports extent = new ExtentReports();
+        extent.attachReporter(reporter);
+        ExtentTest logger=extent.createTest("LoginTest");
+        logger.log(Status.INFO, "Login to amazon");
+        logger.log(Status.PASS, "Title verified");
+        extent.flush();
+
+    }
+
     @Test
     public void login(){
         HomePage homePage = new HomePage();
