@@ -2,9 +2,11 @@ import factories.BrowserFactory;
 import fixtures.UserFixture;
 import flows.LoginFlow;
 import models.User;
+import org.assertj.core.api.Assertions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
 import pages.AuthenticationPage;
 import pages.HomePage;
 import pages.Page;
@@ -16,7 +18,7 @@ public class Mytest {
 
     @BeforeMethod
     public void setup(){
-        Page.setWebDriver(BrowserFactory.Browser.CHROME);
+        Page.setWebDriver(BrowserFactory.Browser.FIREFOX);
         Page.openUrl(URL);
     }
 
