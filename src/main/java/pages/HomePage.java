@@ -7,6 +7,6 @@ public class HomePage extends Page {
     private static By btnSignIn = By.className("login");
 
     public void clickSignIn(){
-        driver.findElement(btnSignIn).click();
+        click(btnSignIn);
     }
 }
